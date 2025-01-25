@@ -1,0 +1,199 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    background-image: url('images/background.gif'); /* Ensure 'background.jpg' is in your project directory */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-start; /* Align items to the start horizontally */
+    align-items: center; /* Center items vertically */
+    height: 100vh;
+    font-family: 'Arial, sans-serif';
+    overflow: hidden;
+    position: relative;
+}
+
+/* Message Container Styling */
+.message-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffb6c1; /* Light Pink color for text */
+    font-size: 2em;
+    z-index: 2; /* Ensure it's above other elements */
+    width: 80%; /* Adjust width as needed */
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Message Styling */
+.message {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better visibility */
+}
+
+/* Show Class */
+.message.show {
+    opacity: 1;
+}
+
+/* GIF Styling */
+.gif {
+    margin-left: auto;
+    margin-right: auto;
+    display: none; /* Initially hidden */
+    width: 450px; /* Increased size from 200px to 250px */
+    margin-top: 20px;
+    border: 2px solid #ffb6c1; /* Light pink border around GIF */
+    border-radius: 10px;
+}
+
+/* Birthday Card Styling */
+.birthdaycard {
+    background: rgb(143, 103, 218); /* Purple background */
+    border-radius: 10px;
+    height: 80vh;
+    width: 63vh;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: opacity 2s ease-in-out, transform 1s;
+    z-index: 1;
+    opacity: 0; /* Initially hidden */
+    position: absolute;
+    right: 5%; /* Shift the card to the right side */
+}
+
+/* Show Birthday Card */
+.birthdaycard.show {
+    opacity: 1;
+}
+
+/* Hover Effects on Birthday Card */
+.birthdaycard:hover {
+    transform: perspective(2500px) rotate(5deg);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.birthdaycard:hover .front {
+    transform: rotateY(-160deg);
+}
+
+.birthdaycard:hover .happy,
+.birthdaycard:hover .text {
+    visibility: hidden;
+}
+
+/* Front Side of the Card */
+.front {
+    background-image: url('front.jpg'); /* Ensure 'front.jpg' is in your project directory */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    position: relative;
+    background-color: rgb(143, 103, 218); /* Purple background */
+    width: 63vh;
+    height: 80vh;
+    overflow: hidden;
+    transform-origin: left;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 1s;
+}
+
+/* Happy Birthday Text */
+.happy {
+    margin-top: 40px;
+    color: #ffb6c1; /* Light pink color for text */
+    transition: visibility 0.5s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
+}
+
+/* Text Below Happy Birthday */
+.text {
+    margin-top: -30px;
+    background-color: transparent;
+    color: #ffb6c1; /* Light pink color for text */
+    transition: visibility 0.5s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
+}
+
+/* Inside the Card */
+.card {
+    position: absolute;
+    background: white; /* White background for the inside of the card */
+    border-radius: 10px;
+    height: 80vh;
+    width: 63vh;
+    text-align: center;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+    left: 0;
+    top: 0;
+    padding: 20px; /* Add padding to fit text inside */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+/* Birthday Image Inside the Card */
+img.birthday {
+    margin-top: 10px;
+    border-radius: 10px;
+    height: 40vh;
+    width: 50vh;
+}
+
+/* Head Text */
+.head {
+    margin-top: -20px;
+    margin-bottom: 20px;
+    color: #ffb6c1; /* Light pink color for emphasis */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add text shadow */
+    font-size: 1.8em; /* Adjust font size to fit */
+}
+
+/* Paragraph Text */
+.para {
+    font-size: 1.2em; /* Adjust font size to fit */
+    text-align: center;
+    margin: 0 20px; /* Reduce margins to fit within the card */
+    color: #800080; /* Purple color for text */
+    line-height: 1.5; /* Improve readability */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .birthdaycard {
+        width: 80vw;
+        height: 100vh;
+        right: 5%; /* Maintain right positioning */
+    }
+
+    .para {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 1em;
+    }
+
+    .message-container {
+        font-size: 1.5em;
+    }
+
+    .gif {
+        width: 200px; /* Adjusted for smaller screens */
+    }
+}
