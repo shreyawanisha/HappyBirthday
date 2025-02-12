@@ -1,39 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Message Container -->
-    <div class="message-container">
-        <p id="message1" class="message">Hey you...</p>
-        <p id="message2" class="message hidden">Yes you??</p>
-        <p id="message3" class="message hidden">Why are you so amazing, pretty, cute, niceee...</p>
-        <div id="message4" class="message hidden">
-            <p>aah see your smile...</p>
-            <img src="images/srk.gif" alt="Smile GIF" class="gif">
-        </div>
+  <!-- Fixed balloons at the top -->
+  <div class="balloons">
+    <img class="balloon" src="images/b1.png" alt="Balloon" />
+    <img class="balloon" src="images/b2.png" alt="Balloon" />
+    <img class="balloon" src="images/b3.png" alt="Balloon" />
+    <img class="balloon" src="images/b4.png" alt="Balloon" />
+    <!-- If you want more balloons, un-comment below: -->
+         <img class="balloon" src="images/b5.png" alt="Balloon" />
+         <img class="balloon" src="images/b6.png" alt="Balloon" />
+         <img class="balloon" src="images/b7.png" alt="Balloon" /> 
+         <img class="balloon" src="images/b5.png" alt="Balloon" />
+         <img class="balloon" src="images/b6.png" alt="Balloon" />
+         <img class="balloon" src="images/b7.png" alt="Balloon" />     
+         <img class="balloon" src="images/b6.png" alt="Balloon" />
+         <img class="balloon" src="images/b1.png" alt="Balloon" />
+         <img class="balloon" src="images/b2.png" alt="Balloon" /> 
+   
+  </div>
+  <!-- The container that will hold the sequence of messages and images -->
+  <div class="message-container" id="messageContainer">
+
+    <!-- GROUP 1 -->
+    <div id="messageGroup1" class="message-group hidden">
+      <p class="message-text">Hey you...</p>
     </div>
 
-    <!-- Birthday Card -->
-    <div class="birthdaycard hidden">
-        <div class="front">
-            <h1 class="happy">HAPPY BIRTHDAY</h1>
-            <h1 class="text">Sonal</h1>
-        </div>
-        <div class="card">
-            <img src="images/2.webp" alt="birthday" class="birthday">
-            <h1 class="head">HAPPY BIRTHDAY</h1>
-            <p class="para">
-                Happy birthday to you, Sonal! Thank you for always being on my side no matter what.. I love you so much!
-            </p>
-            <p>- Sweetheart</p>
-        </div>
+    <!-- GROUP 2: Text + Single Image -->
+    <div id="messageGroup2" class="message-group hidden">
+      <p class="message-text">Look how far you've come! 🚀</p>
+      <img src="images/image0.jpeg" alt="SLIET Days" class="img-style">
     </div>
 
-    <script src="script.js"></script>
+    <!-- GROUP 3: Text + Image Grid (Single Row) -->
+    <div id="messageGroup3" class="message-group hidden">
+      <p class="message-text">
+        From <strong>SLIET → Thapar → UHG → Amazon → USA</strong>—what a journey!
+      </p>
+      <div class="image-grid">
+        <img src="images/image1.jpeg" alt="SLIET" class="img-style" />
+        <img src="images/image2.jpeg" alt="Thapar" class="img-style" />
+        <img src="images/image3.jpeg" alt="UHG" class="img-style" />
+        <img src="images/image4.jpeg" alt="Amazon" class="img-style" />
+        <img src="images/image5.jpeg" alt="USA" class="img-style" />
+      </div>
+      <p class="message-text" > Scroll to right.. -> </p>
+    </div>
+
+    <!-- GROUP 4 -->
+    <div id="messageGroup4" class="message-group hidden">
+      <p class="message-text">
+        Through every milestone, every challenge, and every win, 
+        you've only grown stronger, wiser, and even more amazing.
+      </p>
+    </div>
+
+    <!-- GROUP 5: Text + GIF -->
+    <div id="messageGroup5" class="message-group hidden">
+      <p class="message-text">Seeing you chase your dreams makes me feel like...</p>
+      <div class="gif-container">
+        <img src="images/srk.gif" alt="Proud GIF" class="gif">
+      </div>
+    </div>
+
+    <!-- GROUP 6 -->
+    <div id="messageGroup6" class="message-group hidden">
+      <p class="message-text">You inspire me every single day, and I just want to say...</p>
+      <p class="message-text"><strong>Thank you for being YOU! ❤️</strong></p>
+      <img src="images/image7.jpeg" alt="USA" class="img-style" />
+    </div>
+
+    <!-- GROUP 7 -->
+    <div id="messageGroup7" class="message-group hidden">
+      <p class="message-text">
+        Now, get ready for some love, laughter, and a whole lot of birthday magic—because 
+        today is all about YOU! 🎉✨
+      </p>
+    </div>
+  </div>
+
+  <!-- TWO MAIN BUTTONS (shown after messages) -->
+  <div class="buttons hidden" id="buttonsContainer">
+    <button id="btnChooseMe1" class="choose-button">Choose Me</button>
+    <button id="btnChooseMe2" class="choose-button">Choose Me</button>
+  </div>
+
+<!-- PAGE #1: FESTIVE PAGE (Initially hidden) -->
+<div id="pageOne" class="hidden page-container">
+  <header class="header">
+    <h1>Happy Birthday, Sister!</h1>
+    <p class="subtitle">Wishing you all the happiness in the world.</p>
+  </header>
+
+  <!-- HOVER IMAGES CONTAINER -->
+  <div class="hover-container">
+    <!-- Image 1: Visible by default -->
+    <img 
+      src="images/Shipra.jpeg" 
+      alt="Default Image" 
+      class="hover-img front"
+    />
+
+    <!-- Image 2: Shown on hover -->
+    <img 
+      src="images/sonalChildhood.jpeg" 
+      alt="Hover Image" 
+      class="hover-img back"
+    />
+  </div>
+
+  <!-- The Confetti Button -->
+  <button id="confettiBtn" class="confetti-button">Throw Confetti!</button>
+  <!-- Back button -->
+  <button id="btnBackPageOne" class="back-button">
+    Take me back to Surprises!
+  </button>
+</div>
+
+<!-- PAGE #2: PURPLE FLIPPING BIRTHDAY CARD (Initially hidden) -->
+<div id="pageTwo" class="hidden page-container">
+  <div class="birthdaycard" id="theBirthdayCard">
+
+    <!-- Front side (the flipping cover) -->
+    <div class="front"></div>
+
+    <!-- Inside the card -->
+    <div class="card">
+
+      <!-- 1) "Happy Birthday" Image at the top -->
+      <img 
+        src="images/2.webp" 
+        alt="Happy Birthday" 
+        class="happy-bday-img"
+      />
+
+      <!-- 2) Your main message in a larger, easy-to-read style -->
+      <p class="full-para slide-in-left">
+        Hey Sonal, on your birthday I just have to say—you're not only my awesome sister, but you're also my daily dose of inspiration. Every day I see you handle life with such grace, humor, and strength, and I can't help but look up to you. 
+        Thank you for always being there, for all the laughter, and for just being you. I love you so much, and I hope your day (and every day) is as incredible as you are. 
+        <strong>Happy Birthday, <i>I love you the most!</i></strong>
+      </p>
+
+      <!-- 3) Signature (optional) -->
+      <p class="signoff">- your sheru</p>
+
+    </div>
+  </div>
+  <!-- BACK BUTTON (bottom-right) -->
+  <button id="btnBackPageTwo" class="back-button">
+    Take me back to Surprises!
+  </button>
+</div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>

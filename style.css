@@ -1,199 +1,491 @@
-/* Reset some default styles */
+/* RESET & GLOBAL */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Body Styling */
-body {
-    background-image: url('images/background.gif'); /* Ensure 'background.jpg' is in your project directory */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: flex-start; /* Align items to the start horizontally */
-    align-items: center; /* Center items vertically */
-    height: 100vh;
-    font-family: 'Arial, sans-serif';
-    overflow: hidden;
+  }
+  body {
+    /* Festive gradient background */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100vh;
     position: relative;
-}
-
-/* Message Container Styling */
-.message-container {
+    /* Allow content to scroll if needed,
+       but if you prefer no scrolling, set overflow: hidden */
+    overflow-x: hidden; 
+  }
+  
+  /* UTILITY: HIDDEN */
+  .hidden {
+    display: none !important;
+  }
+  
+/* BALLOONS - keep them behind by using a lower z-index */
+.balloons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; /* Keep this relatively low, so card/back-button can sit on top */
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    padding: 0.5rem 0;
+  }
+  
+  .balloon {
+    width: 90px;
+    margin: 0 10px;
+    /* Remove the float animation to keep them static. 
+       If you want them to gently "float," you can re-add an animation:
+    */
+    animation: float 6s ease-in-out infinite; 
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+    
+  }
+  
+  /* Move the home page text lower, so it’s not blocked by balloons */
+  .message-container {
     position: absolute;
-    top: 20%;
+    top: 20%; /* Instead of 25% or 15% */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: #ffb6c1; /* Light Pink color for text */
+    color: #fff;
     font-size: 2em;
-    z-index: 2; /* Ensure it's above other elements */
-    width: 80%; /* Adjust width as needed */
-}
-
-/* Hidden Class */
-.hidden {
-    display: none;
-}
-
-/* Message Styling */
-.message {
+    width: 80%;
+    max-width: 800px;
+    z-index: 3; /* Above balloons */
+  }
+  .message {
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better visibility */
-}
-
-/* Show Class */
-.message.show {
+    margin-bottom: 1rem;
+  }
+  .message.show {
     opacity: 1;
-}
-
-/* GIF Styling */
-.gif {
-    margin-left: auto;
-    margin-right: auto;
-    display: none; /* Initially hidden */
-    width: 450px; /* Increased size from 200px to 250px */
-    margin-top: 20px;
-    border: 2px solid #ffb6c1; /* Light pink border around GIF */
-    border-radius: 10px;
-}
-
-/* Birthday Card Styling */
-.birthdaycard {
-    background: rgb(143, 103, 218); /* Purple background */
-    border-radius: 10px;
-    height: 80vh;
-    width: 63vh;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* TWO MAIN BUTTONS AFTER MESSAGES */
+  .buttons {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 3;
+  }
+  
+  /* "Choose Me" BUTTONS with PULSE ANIMATION */
+  .choose-button {
+    background-color: #f5a623;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transform-style: preserve-3d;
-    transform: perspective(2500px);
-    transition: opacity 2s ease-in-out, transform 1s;
-    z-index: 1;
-    opacity: 0; /* Initially hidden */
+    border-radius: 4px;
+    margin: 0 1rem;
+    transition: background 0.3s;
+    /* Add a pulsing animation */
+    animation: pulse 2s infinite;
+  }
+  .choose-button:hover {
+    background-color: #f08f0f;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* PAGE CONTAINERS */
+  .page-container {
     position: absolute;
-    right: 5%; /* Shift the card to the right side */
-}
-
-/* Show Birthday Card */
-.birthdaycard.show {
-    opacity: 1;
-}
-
-/* Hover Effects on Birthday Card */
-.birthdaycard:hover {
-    transform: perspective(2500px) rotate(5deg);
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.birthdaycard:hover .front {
-    transform: rotateY(-160deg);
-}
-
-.birthdaycard:hover .happy,
-.birthdaycard:hover .text {
-    visibility: hidden;
-}
-
-/* Front Side of the Card */
-.front {
-    background-image: url('front.jpg'); /* Ensure 'front.jpg' is in your project directory */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-radius: 10px;
-    position: relative;
-    background-color: rgb(143, 103, 218); /* Purple background */
-    width: 63vh;
-    height: 80vh;
-    overflow: hidden;
-    transform-origin: left;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 1s;
-}
-
-/* Happy Birthday Text */
-.happy {
-    margin-top: 40px;
-    color: #ffb6c1; /* Light pink color for text */
-    transition: visibility 0.5s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
-}
-
-/* Text Below Happy Birthday */
-.text {
-    margin-top: -30px;
-    background-color: transparent;
-    color: #ffb6c1; /* Light pink color for text */
-    transition: visibility 0.5s;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow */
-}
-
-/* Inside the Card */
-.card {
-    position: absolute;
-    background: white; /* White background for the inside of the card */
-    border-radius: 10px;
-    height: 80vh;
-    width: 63vh;
-    text-align: center;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
-    z-index: -1;
-    left: 0;
     top: 0;
-    padding: 20px; /* Add padding to fit text inside */
-    overflow-y: auto; /* Enable scrolling if content overflows */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+  }
+  
+  /* PAGE #1: FESTIVE PAGE */
+  .header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #fefefe;
+    margin-bottom: 2rem;
+  }
+  .cake-container {
+    margin: 2rem 0;
+  }
+  .cake {
+    width: 200px;
+    animation: bounceIn 1s ease forwards;
+  }
+  @keyframes bounceIn {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  /* Confetti button on page one */
+  .confetti-button {
+    background: #f5a623;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+    margin-bottom: 1rem;
+  }
+  .confetti-button:hover {
+    background: #f08f0f;
+  }
+  
+ /* BACK BUTTON pinned at bottom-right, very high z-index so it’s above card */
+ .back-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff6f91;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 9999; /* ensure it's above the card & balloons */
+    animation: pulse 2s infinite;
+  }
+  
+/* PAGE #2: PURPLE FLIPPING BIRTHDAY CARD (Initially hidden) */
+#pageTwo {
+    position: absolute;
+    top: 0;          /* Full-screen container */
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;  /* or center if you want it vertically centered */
+    justify-content: flex-end; 
+    /* Increased padding so it doesn't overlap balloons or the back-button */
+    padding-top: 2rem;        /* was 6rem */
+    padding-left: 44rem;      /* was 6rem */
+    padding-bottom: 2rem; 
+    z-index: 4; /* above balloons (z-index:2) */
 }
 
-/* Birthday Image Inside the Card */
-img.birthday {
+  
+  .birthdaycard:hover .front {
+    transform: rotateY(-160deg);
+  }
+  .birthdaycard:hover .happy,
+  .birthdaycard:hover .text {
+    visibility: hidden;
+  }
+  .happy {
+    margin-top: 40px;
+    color: #ffb6c1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: visibility 0.5s;
+  }
+  .text {
+    margin-top: -30px;
+    color: #ffb6c1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: visibility 0.5s;
+  }
+
+  
+  /* Slightly smaller image so it doesn't overflow card */
+  img.birthday {
     margin-top: 10px;
     border-radius: 10px;
-    height: 40vh;
-    width: 50vh;
-}
+    width: 40vh;
+    height: auto; /* let it maintain aspect ratio */
+  }
 
-/* Head Text */
-.head {
+  .head {
     margin-top: -20px;
     margin-bottom: 20px;
-    color: #ffb6c1; /* Light pink color for emphasis */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add text shadow */
-    font-size: 1.8em; /* Adjust font size to fit */
-}
-
-/* Paragraph Text */
-.para {
-    font-size: 1.2em; /* Adjust font size to fit */
-    text-align: center;
-    margin: 0 20px; /* Reduce margins to fit within the card */
-    color: #800080; /* Purple color for text */
-    line-height: 1.5; /* Improve readability */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+    color: #ffb6c1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-size: 1.8em;
+  }
+  .para {
+    font-size: 1.2em;
+    margin: 0 20px;
+    color: #800080;
+    line-height: 1.5;
+  }
+  
+  /* CONFETTI PIECES */
+  .confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+  }
+  
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
     .birthdaycard {
-        width: 80vw;
-        height: 100vh;
-        right: 5%; /* Maintain right positioning */
+      width: 80vw;
+      height: 90vh;
     }
-
     .para {
-        margin-left: 10px;
-        margin-right: 10px;
-        font-size: 1em;
+      font-size: 1em;
     }
-
-    .message-container {
-        font-size: 1.5em;
-    }
-
     .gif {
-        width: 200px; /* Adjusted for smaller screens */
+      width: 200px;
     }
+  }
+
+/* Your main birthday message paragraph */
+.card .para {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.1em;       /* slightly smaller font size */
+  color: #800080;         /* or any color you like */
+  line-height: 1.4;
+  margin: 0 20px 1.5rem;  /* some extra bottom margin for spacing */
+  text-align: center;     /* center the text if you prefer */
+}
+
+/***** CARD CONTAINER *****/
+.birthdaycard {
+  width: 55vh;
+  height: 70vh;
+  background: rgb(143, 103, 218);
+  border-radius: 10px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3),
+              0 3px 6px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transform: perspective(2500px);
+  position: relative;
+  cursor: pointer;
+  /* flipping effect remains the same as before */
+}
+.birthdaycard:hover .front {
+  transform: rotateY(-160deg);
+}
+
+/***** FRONT (cover) *****/
+.front {
+  border-radius: 10px;
+  width: 55vh;
+  height: 70vh;
+  background-image: url("images/Shipra.jpeg"); /* or any cover image */
+  background-size: cover;
+  background-position: center;
+  transform-origin: left;
+  transition: transform 1s;
+}
+
+/***** INSIDE THE CARD *****/
+.card {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 55vh;
+  height: 70vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1),
+              0 3px 6px rgba(0, 0, 0, 0.1);
+  /* Flex layout to center & stretch content so the text uses the entire card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto; /* so text can scroll if it’s very long */
+  text-align: center;
+  z-index: -1; /* needed for the flip effect */
+}
+
+/***** “Happy Birthday” Image at the top *****/
+.happy-bday-img {
+  width: 50%;
+  max-width: 200px;
+  margin-bottom: 0.1rem;
+}
+
+/***** MAIN TEXT *****/
+.full-para {
+  /* Readable font (could also use Great Vibes if you want cursive, 
+     but usually a clear sans-serif is easier to read at larger blocks) */
+  font-family: 'Amatic SC';
+  font-size: 1.5rem;      /* Increase if you want bigger text */
+  color: #bc457b;            /* Dark gray for good contrast */
+  line-height: 1.2;       /* comfortable spacing */
+  margin: 0;              /* Let flexbox handle spacing */
+  max-width: 90%;         /* keep some side padding */
+}
+
+/***** SIGNATURE TEXT *****/
+.signoff {
+  font-family: 'Great Vibes', cursive; /* cursive for a personal touch */
+  font-size: 1.5rem;
+  color: #bc457b;
+  margin-top: 0.1rem;
+}
+.slide-in-left {
+  transform: translateX(-100%);       /* Start off-screen to the left */
+  animation: slideLeft 2s forwards;   /* 2s slide, then stay in place */
+}
+
+@keyframes slideLeft {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Container for the two images */
+.hover-container {
+  position: relative;
+  width: 300px;       /* Fixed width to ensure both images align */
+  height: 300px;      /* Same height to avoid any jump */
+  margin: 2rem auto;  /* Center horizontally, add spacing */
+  overflow: hidden;   /* Hide what's outside the container */
+}
+
+/* Both images share similar rules */
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;          /* Fill the container’s width */
+  height: 100%;         /* Fill container’s height if you like */
+  object-fit: cover;    /* Crop nicely if the images are bigger */
+  transition: opacity 0.5s ease;  /* Smooth fade effect */
+}
+
+/* The "front" image is visible by default */
+.front {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* The "back" image is hidden initially */
+.back {
+  opacity: 0;
+  z-index: 2;
+}
+
+/* On hover, show the back image, hide the front */
+.hover-container:hover .front {
+  opacity: 0;
+}
+.hover-container:hover .back {
+  opacity: 1;
+}
+.hover-container {
+  perspective: 1000px;  /* Needed for 3D flip */
+}
+.hover-img {
+  backface-visibility: hidden;
+}
+.front {
+  transform: rotateY(0);
+}
+.back {
+  transform: rotateY(180deg);
+  opacity: 1;            /* you can also transition opacity if you like */
+}
+.hover-container:hover .front {
+  transform: rotateY(-180deg);
+}
+.hover-container:hover .back {
+  transform: rotateY(0);
+}
+
+
+/* Initially hidden elements */
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+/* Shown elements */
+.show {
+  display: block;  /* or flex if you prefer */
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Group container styling */
+.message-group {
+  text-align: center;
+  margin: 30px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.img-style{
+  width: 450px; /* Adjust size as needed */
+  height: 550px; /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.image-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;           /* space between images */
+  flex-wrap: nowrap;   /* all images stay on one row */
+  overflow-x: auto;    /* horizontal scroll if needed */
+  margin-top: 15px;
+  width: 100%;         /* let it expand fully in its container */
+  padding: 10px 30px;       /* optional padding to avoid clipping edges */
+  max-width: 800px; /* or any size you prefer */
+}
+
+/* Bigger images (adjust to your preference) */
+.image-grid img {
+  width: 400px;  /* Increase or decrease as needed */
+  height: 300px; /* Keep aspect ratio consistent */
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.message-group {
+  text-align: center;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* GIF Container (centered) */
+.gif-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.gif {
+  width: 300px; 
+  border-radius: 10px;
+  display: block; /* starts as block if you prefer */
 }
