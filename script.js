@@ -58,18 +58,25 @@ messageGroups.forEach((group, index) => {
   const buttonsContainer = document.getElementById('buttonsContainer');
   
   // 3) BUTTON #1 => SHOW FESTIVE PAGE
-  btnChooseMe1.addEventListener('click', () => {
-    buttonsContainer.classList.add('hidden');
-    pageTwo.classList.add('hidden');
-    pageOne.classList.remove('hidden');
-  });
+// 3) BUTTON #1 => SHOW FESTIVE PAGE
+btnChooseMe1.addEventListener('click', () => {
+  buttonsContainer.classList.add('hidden');
+  pageTwo.classList.add('hidden');
+  pageOne.classList.remove('hidden');
+
+  // HIDE BALLOONS for Page #1
+  document.querySelector('.balloons').style.display = 'none';
+});
   
-  // 4) BUTTON #2 => SHOW BIRTHDAY CARD
-  btnChooseMe2.addEventListener('click', () => {
-    buttonsContainer.classList.add('hidden');
-    pageOne.classList.add('hidden');
-    pageTwo.classList.remove('hidden');
-  });
+// 4) BUTTON #2 => SHOW BIRTHDAY CARD
+btnChooseMe2.addEventListener('click', () => {
+  buttonsContainer.classList.add('hidden');
+  pageOne.classList.add('hidden');
+  pageTwo.classList.remove('hidden');
+
+  // SHOW BALLOONS for Page #2 (if you want them there)
+  document.querySelector('.balloons').style.display = 'flex';
+});
   
   // 5) "BACK" BUTTONS => RETURN TO HOME (the 2-button screen)
   const btnBackPageOne = document.getElementById('btnBackPageOne');
@@ -84,6 +91,7 @@ messageGroups.forEach((group, index) => {
     pageTwo.classList.add('hidden');
     // Show the 2-button container again (home screen)
     buttonsContainer.classList.remove('hidden');
+    document.querySelector('.balloons').style.display = 'flex';
   }
   
   // 6) CONFETTI LOGIC (on the Festive Page)
@@ -140,3 +148,75 @@ messageGroups.forEach((group, index) => {
       }
     }, 16);
   }
+
+  // Image Slider Functionality
+const images = [
+  "images/sonalChildhood.jpeg",
+  "images/image0.jpeg",
+  "images/img0.jpeg",
+  "images/img1.jpeg",
+  "images/img3.jpeg",
+"images/img4.jpeg",
+"images/img5.jpeg",
+"images/img6.jpeg",
+"images/img7.jpeg",
+"images/img8.jpeg",
+"images/img9.jpeg",
+"images/img10.jpeg",
+"images/img11.jpeg",
+"images/img12.jpeg",
+"images/img13.jpeg",
+"images/img14.jpeg",
+"images/img15.jpeg",
+"images/img16.jpeg",
+"images/img17.jpeg",
+"images/img18.jpeg",
+"images/img19.jpeg",
+"images/img20.jpeg",
+"images/img21.jpeg",
+"images/img22.jpeg",
+"images/img23.jpeg",
+"images/img24.jpeg",
+"images/img25.jpeg",
+"images/img27.jpeg",
+"images/img28.jpeg",
+"images/img29.jpeg",
+"images/img30.jpeg",
+"images/shipra.jpeg",
+"images/img31.jpeg"
+];
+
+let currentIndex = 0;
+const carouselImage = document.getElementById("carouselImage");
+
+function changeImage(direction) {
+  currentIndex += direction;
+  
+  // Wrap around if out of bounds
+  if (currentIndex < 0) {
+    currentIndex = images.length - 1;
+  } else if (currentIndex >= images.length) {
+    currentIndex = 0;
+  }
+
+  // Change Image
+  carouselImage.src = images[currentIndex];
+}
+
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+const musicIcon = document.getElementById('musicIcon');
+
+musicToggle.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    // Switch icon to pause
+    musicIcon.classList.remove('fa-play');
+    musicIcon.classList.add('fa-pause');
+  } else {
+    bgMusic.pause();
+    // Switch icon back to play
+    musicIcon.classList.remove('fa-pause');
+    musicIcon.classList.add('fa-play');
+  }
+});

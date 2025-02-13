@@ -12,6 +12,11 @@
     href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap"
     rel="stylesheet"
   />
+  <!-- Font Awesome (for icons) -->
+<link 
+rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
   
 
   <!-- External CSS -->
@@ -106,29 +111,19 @@
 <!-- PAGE #1: FESTIVE PAGE (Initially hidden) -->
 <div id="pageOne" class="hidden page-container">
   <header class="header">
-    <h1>Happy Birthday, Sister!</h1>
-    <p class="subtitle">Wishing you all the happiness in the world.</p>
+    <h1>Grab a coffee and take a small glance at your wonderful journey ✨</h1>
+    <p class="subtitle">A little walk down memory lane…</p>
   </header>
 
-  <!-- HOVER IMAGES CONTAINER -->
-  <div class="hover-container">
-    <!-- Image 1: Visible by default -->
-    <img 
-      src="images/Shipra.jpeg" 
-      alt="Default Image" 
-      class="hover-img front"
-    />
-
-    <!-- Image 2: Shown on hover -->
-    <img 
-      src="images/sonalChildhood.jpeg" 
-      alt="Hover Image" 
-      class="hover-img back"
-    />
-  </div>
+<!-- IMAGE CAROUSEL -->
+<div class="carousel-container">
+  <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+  <img id="carouselImage" src="images/Shipra.jpeg" alt="Carousel Image" class="carousel-img">
+  <button class="next" onclick="changeImage(1)">&#10095;</button>
+</div>
 
   <!-- The Confetti Button -->
-  <button id="confettiBtn" class="confetti-button">Throw Confetti!</button>
+  <button id="confettiBtn" class="confetti-button">  Throw Confetti For Yourself, Because You Deserve It! 😉</button>
   <!-- Back button -->
   <button id="btnBackPageOne" class="back-button">
     Take me back to Surprises!
@@ -169,6 +164,20 @@
     Take me back to Surprises!
   </button>
 </div>
+
+<audio 
+  id="bgMusic" 
+  src="music/song.mp3" 
+  autoplay 
+  loop
+>
+  <!-- Fallback text if the browser doesn't support audio -->
+  Your browser does not support the audio element.
+</audio>
+<!-- <audio id="bgMusic" src="music/yourSong.mp3" autoplay loop controls></audio> -->
+<button id="musicToggle" class="music-button">
+  <i id="musicIcon" class="fa fa-play"></i> 
+</button>
 
   <!-- Script -->
   <script src="script.js"></script>

@@ -123,10 +123,17 @@
   .header h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 3rem;
-    color: #fff;
+    color: #5b2447;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     margin-bottom: 0.5rem;
   }
+  /* For any general text paragraphs (like .message-text) */
+.message-text {
+  font-size: 1.2rem;
+  color: #4c2342;  /* darker purple for body text */
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
   .subtitle {
     font-size: 1.2rem;
     color: #fefefe;
@@ -488,4 +495,62 @@
   width: 300px; 
   border-radius: 10px;
   display: block; /* starts as block if you prefer */
+}
+
+/* IMAGE CAROUSEL STYLING */
+.carousel-container {
+  position: relative;
+  width: 400px;  /* Adjust width as needed */
+  height: 500px; /* Adjust height as needed */
+  margin: 20px auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Arrows */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.music-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #8a2be2; /* a nice purple */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1.5rem; /* icon size will scale with this font-size */
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
+}
+
+.music-button:hover {
+  background-color: #6c1cb3; /* darker purple on hover */
 }
