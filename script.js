@@ -66,6 +66,10 @@ btnChooseMe1.addEventListener('click', () => {
 
   // HIDE BALLOONS for Page #1
   document.querySelector('.balloons').style.display = 'none';
+
+    // >>> RESET THE SLIDER <<<
+    currentIndex = 0;
+    carouselImage.src = images[currentIndex];
 });
   
 // 4) BUTTON #2 => SHOW BIRTHDAY CARD

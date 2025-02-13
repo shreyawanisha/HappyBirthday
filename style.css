@@ -554,3 +554,70 @@
 .music-button:hover {
   background-color: #6c1cb3; /* darker purple on hover */
 }
+
+/* MOBILE / TABLET: Up to 768px */
+@media (max-width: 768px) {
+  /* Adjust the entire page container */
+  .page-container {
+    padding: 1rem;
+    height: auto; /* Let height expand as needed */
+    justify-content: flex-start; /* So content stacks without centering if you like */
+  }
+
+  /* Make the heading slightly smaller */
+  .header h1 {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  /* Message text more compact */
+  .message-text {
+    font-size: 1rem;
+  }
+
+  /* For large images (class .img-style), ensure they fit smaller screens */
+  .img-style {
+    width: 90%;  /* Let it take up most of the screen */
+    height: auto; /* Keep aspect ratio */
+    margin: 0 auto; /* Center it */
+  }
+
+  /* Carousel container shrinks to phone size */
+  .carousel-container {
+    width: 90%;
+    height: 300px; /* or auto, whichever looks better */
+  }
+
+  /* Adjust the flipping birthday card */
+  .birthdaycard {
+    width: 80vw;  /* 80% of viewport width */
+    height: auto; /* Let it grow based on content */
+  }
+  .front,
+  .card {
+    width: 80vw;
+    height: auto;
+  }
+
+  /* The .confetti-button, back-button, etc. can be smaller or stacked */
+  .confetti-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  .back-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    bottom: 10px;  /* Adjust positioning if needed */
+    right: 10px;
+  }
+
+  /* The music button in bottom-left might need smaller text/icon */
+  .music-button {
+    font-size: 1rem;
+    bottom: 10px;
+    left: 10px;
+    padding: 0.5rem;
+  }
+}
